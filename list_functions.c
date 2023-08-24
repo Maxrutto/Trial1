@@ -41,11 +41,11 @@ stack_t *add_node_start(stack_t **h, const int n)
 }
 
 /**
- * add_none_end - Adds a node at the end of a
+ * add_node_end - Adds a node at the end of a
  * doubly linked list
  * @n: data to store in the new node
  * @h: pointer to the head of the list
- * 
+ *
  * Return: pointer to the new node
  */
 stack_t *add_node_end(stack_t **h, const int n)
