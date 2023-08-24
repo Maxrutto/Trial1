@@ -16,3 +16,15 @@ void free_doubly(stack_t *h)
 		free(temp);
 	}
 }
+
+/**
+ * free_var - Free the global variables
+ *
+ * Return: void
+ */
+void free_var(void)
+{
+	free_doubly(var.h);
+	free(var.buf);
+	fclose(var.fp);
+}
