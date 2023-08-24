@@ -18,7 +18,7 @@ stack_t *add_node_start(stack_t **h, const int n)
 	new_node = (stack_t *)malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_var();
 		exit(EXIT_FAILURE);
 	}
@@ -58,7 +58,7 @@ stack_t *add_node_end(stack_t **h, const int n)
 	new_node = (stack_t *)malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_var();
 		exit(EXIT_FAILURE);
 	}

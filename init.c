@@ -1,19 +1,21 @@
 #include "monty.h"
 
+global_t var;
+
 /**
  * init_var - Initializing the global variables
  *
- * @fd: File descriptor for the open file
+ * @fp: File descriptor for the open file
  *
  * Return: void
  */
 
-void init_var(FILE *fd)
+void init_var(FILE *fp)
 {
 	var.cont = 1;
 	var.lifo = 1;
 	var.h = NULL;
-	var.fd = fd;
+	var.fp = fp;
 	var.buf = NULL;
 	var.arg = NULL;
 }

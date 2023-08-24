@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "monty.h"
 
 /**
@@ -41,7 +42,7 @@ int str_cmp(char *str1, char *str2)
 		str2++;
 	}
 
-	if (*str == '\0' && *str2 != '\0')
+	if (*str1 == '\0' && *str2 != '\0')
 		return (-(*str2));
 	else if (*str1 != '\0' && *str2 == '\0')
 		return (*str1);

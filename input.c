@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "monty.h"
 
 /**
@@ -14,14 +15,14 @@ FILE *f_read(int argc, char **argv)
 
 	if (argc > 2 || argc == 1)
 	{
-		dprintf("2, USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
 
-	if (fd == NULL)
+	if (fp == NULL)
 	{
-		dprintf(2, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 

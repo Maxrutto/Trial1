@@ -1,5 +1,5 @@
-#ifndef MONTY_H
-#define MONTY_H
+#ifndef MONTY
+#define MONTY
 
 #include <stdio.h>
 #include <stddef.h>
@@ -13,6 +13,24 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include <ctype.h>
+
+#define BUFFER_SIZE 1024
+
+/**
+ * struct stack_s - doubly linked list representation of a stack (or queue)
+ * @n: integer
+ * @prev: points to the previous element of the stack (or queue)
+ * @next: points to the next element of the stack (or queue)
+ *
+ * Description: doubly linked list node structure
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct stack_s
+{
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
+} stack_t;
 
 /**
  * struct variables - Global structure that'll be used in the functions
@@ -34,23 +52,7 @@ typedef struct variables
 	FILE *fp;
 	int lifo;
 	char *buf;
-} variable_t;
-
-/**
- * struct stack_s - doubly linked list representation of a stack (or queue)
- * @n: integer
- * @prev: points to the previous element of the stack (or queue)
- * @next: points to the next element of the stack (or queue)
- *
- * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO
- */
-typedef struct stack_s
-{
-	int n;
-	struct stack_s *prev;
-	struct stack_s *next;
-} stack_t;
+} global_t;
 
 /**
  * struct instruction_s - opcode and its function
@@ -66,7 +68,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern variable_t var;
+extern global_t var;
 
 void free_doubly(stack_t *h);
 void free_var(void);
@@ -79,5 +81,8 @@ void pall_op(stack_t **stack, unsigned int line_no);
 int is_int(const char *str);
 int str_cmp(char *str1, char *str2);
 void (*use_opcodes(char *op))(stack_t **stack, unsigned int line_no);
+void *_calloc(unsigned int nmem, unsigned int size);
+void store_line(char **lineptr, char *buf, size_t *size, size_t buf_size);
+ssize_t _getline(char **lineptr, size_t *size, FILE *fp);
 
 #endif

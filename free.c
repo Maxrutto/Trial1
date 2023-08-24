@@ -1,5 +1,7 @@
 #include "monty.h"
 
+global_t var;
+
 /**
  * free_doubly - frees the linked list
  *

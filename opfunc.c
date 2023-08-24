@@ -1,7 +1,9 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include "monty.h"
+#include <stdio.h>
+
+global_t var;
 
 /**
  * push_op - Implement the push opcode
@@ -10,14 +12,16 @@
  */
 void push_op(stack_t **stack, unsigned int line_no)
 {
+	int n;
+
 	if (!var.arg || !is_int(var.arg))
 	{
-		dprintf(2, "L%u: usage: push integer\n", line_no);
+		fprintf(stderr, "L%u: usage: push integer\n", line_no);
 		free_var();
 		exit(EXIT_FAILURE);
 	}
 
-	int n = atoi(var.arg);
+	n = atoi(var.arg);
 
 	if (var.lifo == 1)
 		add_node_start(stack, n);
@@ -32,9 +36,9 @@ void push_op(stack_t **stack, unsigned int line_no)
  */
 void pall_op(stack_t **stack, unsigned int line_no)
 {
-	(void)line_no;
-
 	stack_t *temp = *stack;
+
+	(void)line_no;
 
 	while (temp != NULL)
 	{

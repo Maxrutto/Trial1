@@ -1,9 +1,11 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "monty.h"
+#include <stdio.h>
 
 #define DELIMITERS " \t\n"
+
+global_t var;
 
 /**
  * main - The entry point to our program
@@ -23,7 +25,7 @@ int main(int argc, char **argv)
 
 	fp = f_read(argc, argv);
 	init_var(fp);
-	no_of_lines = getline(&var.buf, &size, fp);
+	no_of_lines = _getline(&var.buf, &size, fp);
 	while (no_of_lines != -1)
 	{
 		lines[0] = strtok(var.buf, DELIMITERS);
@@ -32,15 +34,15 @@ int main(int argc, char **argv)
 			f = use_opcodes(lines[0]);
 			if (!f)
 			{
-				dprintf(2, "L%u: unknown instruction %s\n", var.cont, lines[0]);
+				fprintf(stderr, "L%u: unknown instruction %s\n", var.cont, lines[0]);
 				free_var();
 				exit(EXIT_FAILURE);
 			}
 			var.arg = strtok(NULL, DELIMITERS);
-			f(var.h, var.cont);
+			f(&var.h, var.cont);
 		}
-		no_of_lines = getline(&var.buf, &size, fp);
-		var.cont++
+		no_of_lines = _getline(&var.buf, &size, fp);
+		var.cont++;
 	}
 
 	free_var();
