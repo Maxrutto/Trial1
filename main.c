@@ -18,13 +18,13 @@ int main(int argc, char **argv)
 	void (*f)(stack_t **stack, unsigned int line_no);
 	FILE *fp;
 	char *lines[2] = {NULL, NULL};
-	ssize_t no_of_lines =0;
+	ssize_t no_of_lines = 0;
 	size_t size = 1024;
 
 	fp = f_read(argc, argv);
 	init_var(fp);
 	no_of_lines = getline(&var.buf, &size, fp);
-	while(no_of_lines != -1)
+	while (no_of_lines != -1)
 	{
 		lines[0] = strtok(var.buf, DELIMITERS);
 		if (lines[0] && lines[0][0] != '#')
